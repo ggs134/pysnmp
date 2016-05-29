@@ -1,12 +1,13 @@
 from pysnmp.entity import engine, config
 from pysnmp.entity.rfc3413 import cmdrsp, context
 from pysnmp.carrier.asynsock.dgram import udp
+from pysnmp.smi import builder
 
 import threading
 import collections
 import time
 
-MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc', 'valueSetFunc'])
+MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc'])
 
 class CustomMib(object):
 	"""Stores the data we want to serve.
@@ -51,7 +52,7 @@ def createVariable(SuperClass, getValue, *args):
 
 #amin code
 
-cmib = CustomMib(1)
+cmib = CustomMib(5717)
 objects = [MibObject('MY-MIB', 'testDescription', cmib.getTestDescription), MibObject('MY-MIB', 'testCount', cmib.getTestCount)]
 
 
@@ -60,7 +61,7 @@ snmpEngine = engine.SnmpEngine()
 
 config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode(('127.0.0.1', 161)))
 config.addV3User(snmpEngine,'usr-md5-des',config.usmHMACMD5AuthProtocol,'authkey1',config.usmDESPrivProtocol,'privkey1')
-config.addVacmUser(snmpEngine, 3, 'usr-md5-des', 'authPriv',(1,3,6,1,2,1), (1,3,6,1,2,1))
+config.addVacmUser(snmpEngine, 3, 'usr-md5-des', 'authPriv',(1,3,6,1,4,1), (1,3,6,1,4,1))
 
 snmpContext = context.SnmpContext(snmpEngine)
 
@@ -76,10 +77,10 @@ MibScalarInstance, = mibBuilder.importSymbols('SNMPv2-SMI','MibScalarInstance')
 for mibObject in objects:
     nextVar, = mibBuilder.importSymbols(mibObject.mibName,
                                         mibObject.objectType)
-    instance = createVariable(MibScalarInstance, mibObject.valueFunc, nextVar.name, (0,),  nextVar.syntax)
+    instance = createVariable(MibScalarInstance, mibObject.valueGetFunc, nextVar.name, (0,),  nextVar.syntax)
     #need to export as <var name>Instance
     instanceDict = {str(nextVar.name)+"Instance":instance}
-    mibBuilder.exportSymbols(mibObject.mibName, **instanceDict
+    mibBuilder.exportSymbols(mibObject.mibName, **instanceDict)
 
 cmdrsp.GetCommandResponder(snmpEngine, snmpContext)
 cmdrsp.SetCommandResponder(snmpEngine, snmpContext)
