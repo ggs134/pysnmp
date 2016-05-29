@@ -13,16 +13,31 @@ class CustomMib(object):
 	"""Stores the data we want to serve.
 	"""
 	#=====================================================================================
-	def __init__(self, num):
+	def __init__(self, path):
 		self._lock = threading.RLock()
-		self._test_count = num
+		self._hashrate = 0
+        self._file_path = path
 	#=====================================================================================
-	def getTestDescription(self):
-		return "My Description [%s]" % self._test_count
+	def getDescription(self):
+		return "My Hashrate [%s]" % self._hashrate
 	#=====================================================================================
-	def getTestCount(self):
+	def getHashrate(self):
 		with self._lock:
-			return self._test_count
+            self._hashrate = self._getHash()
+			return self._getHash()
+
+    def _getHash(self):
+        with open(self._file_path) as f:
+            lines = f.readlines()
+            last = lines[-1]
+            split = last.split()
+            if split[2].startswith("Mining") is not True:
+                self._getHash(path)
+
+            res = int(split[7])
+            # print res
+            return res
+
 	# #=====================================================================================
 	# def setTestCount(self, value):
 	# 	with self._lock:
@@ -52,8 +67,8 @@ def createVariable(SuperClass, getValue, *args):
 
 #amin code
 
-cmib = CustomMib(5717)
-objects = [MibObject('MY-MIB', 'testDescription', cmib.getTestDescription), MibObject('MY-MIB', 'testCount', cmib.getTestCount)]
+cmib = CustomMib("/home/miner11/ethminer.err.log")
+objects = [MibObject('MY-MIB', 'hashrateDescription', cmib.getDescription), MibObject('MY-MIB', 'hashrate', cmib.getHashrate)]
 
 
 

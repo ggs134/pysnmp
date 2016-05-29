@@ -3,21 +3,17 @@ IMPORTS
         OBJECT-TYPE, Integer32, NOTIFICATION-TYPE, enterprises
                      FROM SNMPv2-SMI
 ;
-myCompany       OBJECT IDENTIFIER ::= {enterprises 42}
-testCount OBJECT-TYPE
+onther       OBJECT IDENTIFIER ::= {enterprises 42}
+hashrate OBJECT-TYPE
     SYNTAX Integer32
     MAX-ACCESS read-only
     STATUS current
-    DESCRIPTION "A sample count of something."
-    ::= {myCompany 1}
-testDescription OBJECT-TYPE
+    DESCRIPTION "A hashrate of machine."
+    ::= {onther 1}
+hashrateDescription OBJECT-TYPE
     SYNTAX OCTET STRING
     MAX-ACCESS read-only
     STATUS current
-    DESCRIPTION "A description of something"
-    ::= {myCompany 2}
-testTrap NOTIFICATION-TYPE
-    STATUS current
-    DESCRIPTION "Test notification"
-    ::= {myCompany 3}
+    DESCRIPTION "A description of hashrate"
+    ::= {onther 2}
 END
