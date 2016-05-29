@@ -67,7 +67,7 @@ def createVariable(SuperClass, getValue, *args):
 
 #amin code
 
-cmib = CustomMib("/home/miner11/ethminer.err.log")
+cmib = CustomMib("/home/ubuntu/snmp/ethminer.err.log")
 objects = [MibObject('MY-MIB', 'hashrateDescription', cmib.getDescription), MibObject('MY-MIB', 'hashrate', cmib.getHashrate)]
 
 
