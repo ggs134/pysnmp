@@ -30,9 +30,16 @@ class CustomMib(object):
             lines = f.readlines()
             last = lines[-1]
             split = last.split()
+
+            if len(split)<7:
+                self._getHash()
+                res = 1000
+
             if split[2].startswith("Mining"):
                 self._getHash()
-            res = int(split[7])
+                res = None
+            else:
+                res = int(split[7])
     # print res
             return res
 
