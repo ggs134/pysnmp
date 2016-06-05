@@ -8,12 +8,21 @@ import collections
 import time
 import sys
 import os
+import json
 
 import readGPUTemp
 
 filepath = os.path.dirname(os.path.realpath(__file__))
 
 MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc'])
+
+with open(filepath+"setting.txt") as settings:
+    _json_obj = json.loads(settings)
+    _addr = _json_obj["address"]
+    _port = _json_obj["port"]
+    _account = _json_obj["id"]
+    _auth_key = _json_obj['auth_key']
+    _priv_key = _json_obj['priv_key']
 
 class CustomMib(object):
 #=====================================================================================
@@ -88,9 +97,9 @@ objects = [MibObject('MY-MIB', 'hashrateDescription', cmib.getDescription), MibO
 
 snmpEngine = engine.SnmpEngine()
 
-config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode(('', 161)))
-config.addV3User(snmpEngine,'goldrush',config.usmHMACMD5AuthProtocol,'authkey1',config.usmDESPrivProtocol,'privkey1')
-config.addVacmUser(snmpEngine, 3, 'goldrush', 'authPriv',(1,3,6,1,4,1), (1,3,6,1,4,1))
+config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
+config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
+config.addVacmUser(snmpEngine, 3, _account, _priv_key,(1,3,6,1,4,1), (1,3,6,1,4,1))
 
 snmpContext = context.SnmpContext(snmpEngine)
 
