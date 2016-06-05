@@ -8,6 +8,8 @@ import collections
 import time
 import sys
 
+import readGPUTemp
+
 MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc'])
 
 class CustomMib(object):
@@ -18,7 +20,8 @@ class CustomMib(object):
         self._file_path = path
     #=====================================================================================
     def getDescription(self):
-        return "My Hashrate [%s]" % self._hashrate
+        res = readGPUTemp.parseResult()
+        return res
     #=====================================================================================
     def getHashrate(self):
         with self._lock:
@@ -31,15 +34,18 @@ class CustomMib(object):
             last = lines[-1]
             split = last.split()
 
-            if len(split)<7:
-                self._getHash()
-                res = 1000
-
-            if split[2].startswith("Mining"):
-                self._getHash()
-                res = None
-            else:
+            # if len(split)<7:
+            #     res = 10
+            #
+            # elif split[2].startswith("Mining"):
+            #     res = 10
+            #
+            # else:
+            #     res = int(split[7])
+            try:
                 res = int(split[7])
+            except Exception as e:
+                res = 10
     # print res
             return res
 
