@@ -1,4 +1,4 @@
-#!bin/bash
+#!bin/sh
 
 apt-get -y update                               #업데이트
 apt-get -y install python-pip 	         #pip 설치
