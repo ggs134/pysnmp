@@ -7,8 +7,11 @@ import threading
 import collections
 import time
 import sys
+import os
 
 import readGPUTemp
+
+filepath = os.path.dirname(os.path.realpath(__file__))
 
 MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc'])
 
@@ -94,7 +97,7 @@ snmpContext = context.SnmpContext(snmpEngine)
 
 #builder create
 mibBuilder = snmpContext.getMibInstrum().getMibBuilder()
-mibSources = mibBuilder.getMibSources() + (builder.DirMibSource('.'),)
+mibSources = mibBuilder.getMibSources() + (builder.DirMibSource('.'),)+(builder.DirMibSource(filepath),)
 mibBuilder.setMibSources(*mibSources)
 
 

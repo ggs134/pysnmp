@@ -1,11 +1,12 @@
 import subprocess
+import os
 
 def bashCommand(cmd):
     p = subprocess.Popen(['/bin/bash', cmd, '|', "grep", 'Sensor'], stdout=subprocess.PIPE)
     return p
 
 def readTemp():
-    p = bashCommand("./display.sh")
+    p = bashCommand(os.path.dirname(os.path.realpath(__file__))+"/display.sh")
     return p.stdout.read()
 
 def parseResult():
