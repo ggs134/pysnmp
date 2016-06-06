@@ -1,8 +1,8 @@
 {
-  "address" : ""
-  "port" : 60003
-  "id" : "goldrush"
-  "auth_key" : "authKey1"
-  "priv_key" : "privKey1"
+  "address" : "",
+  "port" : 60003,
+  "id" : "goldrush",
+  "auth_key" : "authkey1",
+  "priv_key" : "privkey1"
 
 }

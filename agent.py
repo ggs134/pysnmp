@@ -16,8 +16,8 @@ filepath = os.path.dirname(os.path.realpath(__file__))
 
 MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc'])
 
-with open(filepath+"/setting.txt") as settings:
-    _json_obj = json.loads(settings)
+with open(filepath+"/settings.txt") as settings:
+    _json_obj = json.loads(settings.read())
     _addr = _json_obj["address"]
     _port = _json_obj["port"]
     _account = _json_obj["id"]
@@ -99,7 +99,7 @@ snmpEngine = engine.SnmpEngine()
 
 config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
 config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
-config.addVacmUser(snmpEngine, 3, _account, _priv_key,(1,3,6,1,4,1), (1,3,6,1,4,1))
+config.addVacmUser(snmpEngine, 3, _account, "authPriv",(1,3,6,1,4,1), (1,3,6,1,4,1))
 
 snmpContext = context.SnmpContext(snmpEngine)
 
