@@ -12,7 +12,7 @@ apt-get install -y snmp snmp-mibs-downloader   #MIB데이터 다운로드
 apt-get install -y supervisor screen
 
 ##supervisor세팅
-mkdir -p '$HOME/log'
+mkdir -p $HOME/log
 
 #monitor.conf파일 세팅
 #agent.conf파일 세팅

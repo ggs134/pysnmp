@@ -16,7 +16,7 @@ filepath = os.path.dirname(os.path.realpath(__file__))
 
 MibObject = collections.namedtuple('MibObject', ['mibName','objectType', 'valueGetFunc'])
 
-with open(filepath+"setting.txt") as settings:
+with open(filepath+"/setting.txt") as settings:
     _json_obj = json.loads(settings)
     _addr = _json_obj["address"]
     _port = _json_obj["port"]
