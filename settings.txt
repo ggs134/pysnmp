@@ -1,6 +1,6 @@
 {
   "address" : "",
-  "port" : 60003,
+  "port" : 161,
   "id" : "goldrush",
   "auth_key" : "authkey1",
   "priv_key" : "privkey1"

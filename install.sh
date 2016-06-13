@@ -17,6 +17,8 @@ mkdir -p $HOME/log
 
 #monitor.conf파일 세팅
 #agent.conf파일 세팅
+rm /etc/supervisor/conf.d/monitor.conf
+rm /etc/supervisor/conf.d/agent.conf
 python "monitor_and_agent_install.py"
 
 #supervisor에서 읽어들임
