@@ -35,7 +35,7 @@ sudo echo "autostart=true" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "autorestart=true" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "startretries=3" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "stdout_logfile=$HOME/ethminer.out.log" >>/etc/supervisor/conf.d/ethminer.conf
-sudo echo "stderr_logfile=$HOME/ethminer.err.log">>/etc/supervisor/conf.d/ethminer.confㄴㄴ
+sudo echo "stderr_logfile=$HOME/ethminer.err.log">>/etc/supervisor/conf.d/ethminer.conf
 sudo echo "user=$user" >> /etc/supervisor/conf.d/ethminer.conf
 sudo supervisorctl reread
 sudo supervisorctl update
