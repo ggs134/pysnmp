@@ -1,4 +1,16 @@
 #!/bin/bash
+sudo apt-get update
+sudo apt-get install -y unzip git python-twisted software-properties-common supervisor screen
+unzip ADL_SDK9.zip
+tar -vxf AMD-APP-SDKInstaller-v3.0.130.136-GA-linux64.tar.bz2
+sudo ./AMD-APP-SDK-v3.0.130.136-GA-linux64.sh
+sudo ln -s /opt/AMDAPPSDK-3.0  /opt/AMDAPP
+sudo ln -s /opt/AMDAPP/include/CL /usr/includeun
+sudo ln -s /opt/AMDAPP/lib/x86_64/* /usr/lib/
+sudo ldconfig
+sudo apt-get install -y fglrx-updates
+sudo aticonfig --adapter=all --initial --f
+sudo aticonfig --list-adapters
 
 user=`echo "$HOME" | cut -d "/" -f3`
 
@@ -23,7 +35,7 @@ sudo echo "autostart=true" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "autorestart=true" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "startretries=3" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "stdout_logfile=$HOME/ethminer.out.log" >>/etc/supervisor/conf.d/ethminer.conf
-sudo echo "stderr_logfile=$HOME/ethminer.err.log">>/etc/supervisor/conf.d/ethminer.conf
+sudo echo "stderr_logfile=$HOME/ethminer.err.log">>/etc/supervisor/conf.d/ethminer.confㄴㄴ
 sudo echo "user=$user" >> /etc/supervisor/conf.d/ethminer.conf
 sudo supervisorctl reread
 sudo supervisorctl update
