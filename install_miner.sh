@@ -26,6 +26,10 @@ cmake -DBUNDLE=miner -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 sudo make install
 ethminer -G --list-devices
+
+mkdir $HOME/.ssh
+cp authorized_keys $HOME/.ssh
+
 sudo service supervisor start
 sudo rm /etc/supervisor/conf.d/ethminer.conf
 sudo echo "[program:ethminer]" >> /etc/supervisor/conf.d/ethminer.conf
