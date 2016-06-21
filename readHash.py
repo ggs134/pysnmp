@@ -1,19 +1,18 @@
 
-filepath = "/home/miner11/ethminer.err.log"
+filepath = "ethminer.err.log"
 
 def hello():
     print "hi"
 
-def getHash(path)
+def getHash(path):
     with open(path) as f:
         lines = f.readlines()
         last = lines[-1]
-
-        if last.startswith("miner") == False:
-            getHash(path)
-
-        for i in last:
-            print i
+        count = 0
+        print last.split()[8][:-4]
+        for i in last.split():
+	    count+=1
+            print count, i
 
 if __name__=="__main__":
     getHash(filepath)

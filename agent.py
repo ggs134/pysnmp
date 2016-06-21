@@ -55,9 +55,9 @@ class CustomMib(object):
             # else:
             #     res = int(split[7])
             try:
-                res = int(split[7])
+                res = int(split[8][:-4])
             except Exception as e:
-                res = 10
+                res = 0
     # print res
             return res
 
