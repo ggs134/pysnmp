@@ -7,7 +7,7 @@ user = os.environ["HOME"].split("/")[2]
 def _findLineNumber(filename,text):
   with open(filename) as f:
     data = f.readlines()
-  
+
   for i in data:
     print i
 
@@ -23,7 +23,7 @@ def replaceCommandLine(filename):
   lineNum = _findLineNumber(filename, "command")
   with open(filename) as f:
     lines = f.readlines()
-  lines[lineNum] = "command=ethminer --farm-recheck 2000 -G -S asia1.ethereum.miningpoolhub.com:20535 -O inditow."+ user +":rlagnlrud --cl-global-work 16384 --cl-local-work 256 -E old"
+  lines[lineNum] = "command=ethminer --farm-recheck 2000 -G -S asia1.ethereum.miningpoolhub.com:20535 -O inditow."+ user +":rlagnlrud --cl-global-work 16384 --cl-local-work 256 -E old\n"
   with open(filename, "w") as f:
     f.writelines(lines)
   print "success!"
