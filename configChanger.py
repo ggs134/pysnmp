@@ -75,8 +75,11 @@ def addEnvironment(filename):
     with open(filename, "a") as f:
       f.write("environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100\n")
 
+def commandOS(command):
+  os.system(command)
 
 if __name__ == "__main__":
+  #목표가 되는 파일 
   targetFileName = "/etc/supervisor/conf.d/ethminer.conf"
   if args.miningpoolhub:
     # replaceCommandLine("/etc/supervisor/conf.d/ethminer.conf")
@@ -85,3 +88,7 @@ if __name__ == "__main__":
     replaceEthpool(targetFileName)
   elif args.environment:
     addEnvironment(targetFileName)
+
+  #수퍼바이저 세팅 다시 읽어서 업데이트
+  commandOS("sudo supervsorctl reread")
+  commandOS("sudo supervisorctl update")
