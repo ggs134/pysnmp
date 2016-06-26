@@ -94,5 +94,5 @@ if __name__ == "__main__":
     addEnvironmentVariables(targetFileName)
 
   #수퍼바이저 세팅 다시 읽어서 업데이트
-  commandOS("sudo supervsorctl reread")
+  commandOS("sudo supervisorctl reread")
   commandOS("sudo supervisorctl update")
