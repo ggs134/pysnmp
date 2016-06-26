@@ -61,25 +61,29 @@ def replaceEthpool(filename):
 
 #ethminer에 환경변수를 설정해주는 함수
 #filename을 읽어서 environment변수들을 할당
-def addEnvironment(filename):
-  linenum = _findLineNumber(filename, "environment")
-  #environment라인이 존재할 경우 해당 라인을 변경
-  if linenum:
-    with open(filename) as f:
-      lines = f.readlines()
-    lines[linenum] = "environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100\n"
-    with open(filename, "w") as f:
-      f.writelines(lines)
-  #environment라인이 존재하지 않을 경우 파일 끝에 확장(append)
-  else:
-    with open(filename, "a") as f:
-      f.write("environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100\n")
+def addEnvironmentVariables(filename):
+  target="environment"
+  substitute="environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100"
+  _findSpecificLineAndReplace(filename, target, substitute)
+  #
+  # linenum = _findLineNumber(filename, "environment")
+  # #environment라인이 존재할 경우 해당 라인을 변경
+  # if linenum:
+  #   with open(filename) as f:
+  #     lines = f.readlines()
+  #   lines[linenum] = "environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100\n"
+  #   with open(filename, "w") as f:
+  #     f.writelines(lines)
+  # #environment라인이 존재하지 않을 경우 파일 끝에 확장(append)
+  # else:
+  #   with open(filename, "a") as f:
+  #     f.write("environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100\n")
 
 def commandOS(command):
   os.system(command)
 
 if __name__ == "__main__":
-  #목표가 되는 파일 
+  #목표가 되는 파일
   targetFileName = "/etc/supervisor/conf.d/ethminer.conf"
   if args.miningpoolhub:
     # replaceCommandLine("/etc/supervisor/conf.d/ethminer.conf")
@@ -87,7 +91,7 @@ if __name__ == "__main__":
   elif args.ethpool:
     replaceEthpool(targetFileName)
   elif args.environment:
-    addEnvironment(targetFileName)
+    addEnvironmentVariables(targetFileName)
 
   #수퍼바이저 세팅 다시 읽어서 업데이트
   commandOS("sudo supervsorctl reread")
