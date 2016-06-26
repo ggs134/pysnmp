@@ -27,6 +27,7 @@ sudo echo "startretries=3" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "stdout_logfile=$HOME/ethminer.out.log" >>/etc/supervisor/conf.d/ethminer.conf
 sudo echo "stderr_logfile=$HOME/ethminer.err.log">>/etc/supervisor/conf.d/ethminer.conf
 sudo echo "user=$user" >> /etc/supervisor/conf.d/ethminer.conf
+sudo echo "environment=GPU_FORCE_64BIT_PTR=0,GPU_MAX_HEAP_SIZE=100,GPU_USE_SYNC_OBJECTS=1,GPU_SINGLE_ALLOC_PERCENT=100" >> /etc/supervisor/conf.d/ethminer.conf
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo reboot
