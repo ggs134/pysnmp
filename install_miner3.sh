@@ -19,7 +19,7 @@ cp $HOME/pysnmp/authorized_keys $HOME/.ssh
 sudo service supervisor start
 sudo rm /etc/supervisor/conf.d/ethminer.conf
 sudo echo "[program:ethminer]" >> /etc/supervisor/conf.d/ethminer.conf
-sudo echo "command=ethminer --farm-recheck 2000 -G -S asia1.ethpool.org:3333 -O 0xa47cd1e0e031de09622b6ada5f80a291f302e711.$user --cl-global-work 16384 --cl-local-work 256 -E old" >> /etc/supervisor/conf.d/ethminer.conf
+sudo echo "command=ethminer --farm-recheck 2000 -G -S asia1.ethereum.miningpoolhub.com:20535 -O inditow.$user:rlagnlrud --cl-global-work 16384 --cl-local-work 256 -E old" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "directory=$HOME" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "autostart=true" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "autorestart=true" >> /etc/supervisor/conf.d/ethminer.conf
