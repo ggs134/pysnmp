@@ -9,8 +9,8 @@ class DataHouse:
         p = subprocess.Popen(['/bin/bash', os.path.realpath(__file__)+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
         return p
 
-    def _readGPULoad(self):
-        p = self.bashCommand("displayTemp.sh", "GPU load")
+    def _readGPULoad(self,):
+        p = self.bashCommand("displayClock.sh", "GPU load")
         return p.stdout.read()
 
     def _readTemp(self):
