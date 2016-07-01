@@ -19,7 +19,7 @@ class DataHouse:
 
     def _readClock(self):
         p = self.bashCommand("displayClock.sh","Current")
-        return p
+        return p.stdout.read()
 
     def _parseGPULoad(self):
         res = self._readGPULoad()
