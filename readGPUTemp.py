@@ -6,12 +6,12 @@ class dataHouse:
         pass
 
     def bashCommand(cmd, grep):
-        p = subprocess.Popen(['/bin/bash', os.path.realpath(__file__))+"/displayShell/"+cmd, '|', "grep", grep], stdout=subprocess.PIPE)
+        p = subprocess.Popen(['/bin/bash', os.path.realpath(__file__))+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
         return p
 
     def _readGPULoad():
         p = bashCommand("displayTemp.sh", "GPU load")
-        return p
+        return p.stdout.read()
 
     def _readTemp():
         p = bashCommand("displayTemp.sh", "Seonsor")
