@@ -1,19 +1,34 @@
 import subprocess
 import os
 
-def bashCommand(cmd):
-    p = subprocess.Popen(['/bin/bash', cmd, '|', "grep", 'Sensor'], stdout=subprocess.PIPE)
-    return p
+class dataHouse:
+    def __init__(self):
+        pass
 
-def readTemp():
-    p = bashCommand(os.path.dirname(os.path.realpath(__file__))+"/display.sh")
-    return p.stdout.read()
+    def bashCommand(cmd, grep):
+        p = subprocess.Popen(['/bin/bash', os.path.realpath(__file__))+"/displayShell/"+cmd, '|', "grep", grep], stdout=subprocess.PIPE)
+        return p
 
-def parseResult():
-    res = readTemp()
-    resDic = res.strip().split("\n")
-    final = [int(line.strip()[-7:-5]) for line in resDic if "Temperature" in line]
-    return str(final).strip()
+    def _readGPULoad():
+        p = bashCommand("displayTemp.sh", "GPU load")
+        return p
+
+    def _readTemp():
+        p = bashCommand("displayTemp.sh", "Seonsor")
+        return p.stdout.read()
+
+    def _parseGPULoad():
+        res = _readGPULoad()
+        res_dic = res.strip().split("\n")
+        return res_dic
+
+    def _parseTemp():
+        res = readTemp()
+        resDic = res.strip().split("\n")
+        final = [int(line.strip()[-7:-5]) for line in resDic if "Temperature" in line]
+        return str(final).strip()
+
+
 
 if __name__=="__main__":
-    print parseResult()
+    print _parseTemp()
