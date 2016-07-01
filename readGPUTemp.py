@@ -10,7 +10,7 @@ class DataHouse:
         return p
 
     def _readGPULoad(self,):
-        p = self.bashCommand("displayClock.sh", "GPU load")
+        p = self.bashCommand("displayClock.sh", "GPU")
         return p.stdout.read()
 
     def _readTemp(self):
