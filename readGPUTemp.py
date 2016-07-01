@@ -17,10 +17,18 @@ class DataHouse:
         p = self.bashCommand("displayTemp.sh", "Seonsor")
         return p.stdout.read()
 
+    def _readClock(self):
+        p = self.bashCommand("displayClock.sh","Current Clock")
+
     def _parseGPULoad(self):
         res = self._readGPULoad()
         res_dic = res.strip().split("\n")
         return [line.strip()[-4:-1] for line in res_dic if "GPU load" in line]
+
+    def _parseClock(self):
+        res = self._readClock()
+        res_dic = res.strip().split("\n")
+        return [line.strip()[-4:-1] in res_dic if "Current Clocks" in line]
 
     def _parseTemp(self):
         res = self._readTemp()
@@ -32,4 +40,4 @@ class DataHouse:
 
 if __name__=="__main__":
     dataObj = DataHouse()
-    print dataObj._parseGPULoad()
+    print dataObj._parseClock()
