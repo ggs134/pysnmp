@@ -6,7 +6,7 @@ class DataHouse:
         pass
 
     def bashCommand(self, cmd, grep):
-        p = subprocess.Popen(['/bin/bash', os.path.realpath(__file__)+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
+        p = subprocess.Popen(['/bin/bash', os.path.dirname(os.path.realpath(__file__))+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
         return p
 
     def _readGPULoad(self,):
