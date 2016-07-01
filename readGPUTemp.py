@@ -20,7 +20,7 @@ class DataHouse:
     def _parseGPULoad(self):
         res = self._readGPULoad()
         res_dic = res.strip().split("\n")
-        return [line.strip().[-4:-1] for line in res_dic if "GPU load" in line]
+        return [line.strip()[-4:-1] for line in res_dic if "GPU load" in line]
 
     def _parseTemp(self):
         res = self._readTemp()
