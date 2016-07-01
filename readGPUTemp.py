@@ -31,6 +31,14 @@ class DataHouse:
         res_dic = res.strip().split("\n")
         return [line.strip() for line in res_dic if "Current Clock" in line]
 
+    def _parseMemoryClock(self):
+        parsedClock = self._parseClock()
+        return [line.split()[2] for line in parsedClock]
+
+    def _parseCoreClock(self):
+        parsedClock = self._parseClock()
+        return [line.split()[1] for line in parsedClock]
+
     def _parseTemp(self):
         res = self._readTemp()
         resDic = res.strip().split("\n")
@@ -42,3 +50,5 @@ class DataHouse:
 if __name__=="__main__":
     dataObj = DataHouse()
     print dataObj._parseClock()
+    print dataObj._parseMemoryClock()
+    print dataObj._parseCoreClock()
