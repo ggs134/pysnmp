@@ -19,6 +19,7 @@ class DataHouse:
 
     def _readClock(self):
         p = self.bashCommand("displayClock.sh","Current")
+        return p
 
     def _parseGPULoad(self):
         res = self._readGPULoad()
@@ -28,7 +29,7 @@ class DataHouse:
     def _parseClock(self):
         res = self._readClock()
         res_dic = res.strip().split("\n")
-        return [line.strip()[-4:-1] for line in res_dic if "Current" in line]
+        return [line.strip()[-4:-1] for line in res_dic if "Current Clock" in line]
 
     def _parseTemp(self):
         res = self._readTemp()
