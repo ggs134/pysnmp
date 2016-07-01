@@ -49,6 +49,7 @@ class DataHouse:
 
 if __name__=="__main__":
     dataObj = DataHouse()
-    print dataObj._parseClock()
+    print dataObj._parseTemp()
+    print dataObj._parseGPULoad()
     print dataObj._parseMemoryClock()
     print dataObj._parseCoreClock()
