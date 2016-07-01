@@ -1,29 +1,29 @@
 import subprocess
 import os
 
-class dataHouse:
+class DataHouse:
     def __init__(self):
         pass
 
-    def bashCommand(cmd, grep):
+    def bashCommand(self, cmd, grep):
         p = subprocess.Popen(['/bin/bash', os.path.realpath(__file__)+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
         return p
 
-    def _readGPULoad():
-        p = bashCommand("displayTemp.sh", "GPU load")
+    def _readGPULoad(self):
+        p = self.bashCommand("displayTemp.sh", "GPU load")
         return p.stdout.read()
 
-    def _readTemp():
-        p = bashCommand("displayTemp.sh", "Seonsor")
+    def _readTemp(self):
+        p = self.bashCommand("displayTemp.sh", "Seonsor")
         return p.stdout.read()
 
-    def _parseGPULoad():
-        res = _readGPULoad()
+    def _parseGPULoad(self):
+        res = self._readGPULoad()
         res_dic = res.strip().split("\n")
         return res_dic
 
-    def _parseTemp():
-        res = readTemp()
+    def _parseTemp(self):
+        res = self._readTemp()
         resDic = res.strip().split("\n")
         final = [int(line.strip()[-7:-5]) for line in resDic if "Temperature" in line]
         return str(final).strip()
@@ -31,5 +31,5 @@ class dataHouse:
 
 
 if __name__=="__main__":
-    dataObj=dataHouse()
+    dataObj = DataHouse()
     print dataObj._parseGPULoad()
