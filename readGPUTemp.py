@@ -31,4 +31,4 @@ class dataHouse:
 
 
 if __name__=="__main__":
-    print _parseTemp()
+    print _parseGPULoad()
