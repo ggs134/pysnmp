@@ -33,11 +33,11 @@ class DataHouse:
 
     def _parseMemoryClock(self):
         parsedClock = self._parseClock()
-        return [line.split()[2] for line in parsedClock]
+        return [line.split()[4] for line in parsedClock]
 
     def _parseCoreClock(self):
         parsedClock = self._parseClock()
-        return [line.split()[1] for line in parsedClock]
+        return [line.split()[3] for line in parsedClock]
 
     def _parseTemp(self):
         res = self._readTemp()
