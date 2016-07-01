@@ -31,4 +31,5 @@ class dataHouse:
 
 
 if __name__=="__main__":
-    print _parseGPULoad()
+    dataObj=dataHouse()
+    print dataObj._parseGPULoad()
