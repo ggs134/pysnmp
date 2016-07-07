@@ -90,6 +90,6 @@ if __name__=="__main__":
     print dataObj._parseTemp()
     print dataObj._parseGPULoad()
     print dataObj._parseMemoryClock()
-    # print dataObj._parseCoreClock()
+    print dataObj._getEthminerProcess()
     # print dataObj._parseMemoryClock()
     # print dataObj._getCPUPercent()
