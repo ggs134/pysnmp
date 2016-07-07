@@ -16,6 +16,19 @@ class DataHouse:
         self.ethminerProcess = self._getEthminerProcess()
         self.fanSpeeds = self._getAllFanSpeed()
 
+    def update(self):
+        self.temperature = self._parseTemp()
+        self.gpuLoad = self._parseGPULoad()
+        self.coreClock = self._parseCoreClock()
+        self.memoryClock = self._parseMemoryClock()
+        self.cpuPercent = self._getCPUPercent()
+        self.virtualMemory = self._getVirtualMemory()
+        self.swapMemory = self._getSwapMemory()
+        self.networkUsage = self._getNetworkUsage()
+        self.bootTime = self._getBootTime()
+        self.ethminerProcess = self._getEthminerProcess()
+        self.fanSpeeds = self._getAllFanSpeed()
+
     def bashCommand(self, cmd, grep):
         p = subprocess.Popen(['/bin/bash', os.path.dirname(os.path.realpath(__file__))+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
         return p

@@ -11,6 +11,7 @@ apt-get install -y smilint
 apt-get install -y snmp snmp-mibs-downloader   #MIB데이터 다운로드
 apt-get install -y supervisor screen xinit
 dpkg-reconfigure x11-common
+pip install psutil
 
 ##supervisor세팅
 mkdir -p $HOME/log
