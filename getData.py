@@ -1,9 +1,19 @@
 import subprocess
 import os
+import psutil
 
 class DataHouse:
     def __init__(self):
-        pass
+        self.temperature = self._parseTemp()
+        self.gpuLoad = self._parseGPULoad()
+        self.coreClock = self._parseCoreClock()
+        self.memoryClock = self._parseMemoryClock()
+        self.cpuPercent = self._getCPUPercent()
+        self.virtualMemory = self._getVirtualMemory()
+        self.swapMemory = self._getSwapMemory()
+        self.networkUsage = self._getNetworkUsage()
+        self.bootTime = self._getBootTime()
+        self.ethminerProcess = self._getEthminerProcess()
 
     def bashCommand(self, cmd, grep):
         p = subprocess.Popen(['/bin/bash', os.path.dirname(os.path.realpath(__file__))+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
@@ -45,6 +55,33 @@ class DataHouse:
         final = [int(line.strip()[-7:-5]) for line in resDic if "Temperature" in line]
         return str(final).strip()
 
+    def _getCPUPercent(self):
+        percentList = psutil.cpu_percent(interval=1, percpu=True)
+        return percentList
+
+    def _getVirtualMemory(self):
+        vm = psutil.virtual_memory()
+        return vm
+
+    def _getSwapMemory(self):
+        sm = psutil.swap_memory()
+        return sm
+
+    def _getNetworkUsage(self):
+        nu = psutil.net_io_counters()
+        return nu
+
+    def _getBootTime(self):
+        bt = psutil.boot_time()
+        return bt
+
+    def _getEthminerProcess(self):
+        for i in psutil.process_iter():
+            if i.name() == "ethminer":
+                return i
+            else:
+                return None
+
 
 
 if __name__=="__main__":
@@ -52,4 +89,6 @@ if __name__=="__main__":
     print dataObj._parseTemp()
     print dataObj._parseGPULoad()
     print dataObj._parseMemoryClock()
-    print dataObj._parseCoreClock()
+    # print dataObj._parseCoreClock()
+    # print dataObj._parseMemoryClock()
+    # print dataObj._getCPUPercent()
