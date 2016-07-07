@@ -77,6 +77,7 @@ class DataHouse:
 
     def _getEthminerProcess(self):
         for i in psutil.process_iter():
+            print i.name()
             if i.name() == "ethminer":
                 return i
             else:
