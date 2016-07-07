@@ -82,7 +82,7 @@ class DataHouse:
 
     def _getSingleFanSpeed(self, num):
         res = os.popen('env DISPLAY=:0.'+str(num)+' aticonfig --pplib-cmd "get fanspeed 0"').read()
-        return res.strip().split()[-1]
+        return res.strip().split()
 
     def _getAllFanSpeed(self):
         res = []
@@ -91,7 +91,7 @@ class DataHouse:
             if speed == []:
                 return res
             else:
-                res.append(speed.strip("%"))
+                res.append(speed[-1].strip("%"))
 
 
 if __name__=="__main__":
