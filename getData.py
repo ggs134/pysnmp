@@ -14,6 +14,7 @@ class DataHouse:
         self.networkUsage = self._getNetworkUsage()
         self.bootTime = self._getBootTime()
         self.ethminerProcess = self._getEthminerProcess()
+        self.fanSpeeds = self._getAllFanSpeed()
 
     def bashCommand(self, cmd, grep):
         p = subprocess.Popen(['/bin/bash', os.path.dirname(os.path.realpath(__file__))+'/displayShell/'+str(cmd), '|', 'grep', grep], stdout=subprocess.PIPE)
@@ -79,6 +80,19 @@ class DataHouse:
         pid = os.popen("pidof ethminer").read().strip("\n")
         return psutil.Process(int(pid))
 
+    def _getSingleFanSpeed(self, num):
+        res = os.popen('env DISPLAY=:0.'+str(num)+' aticonfig --pplib-cmd "get fanspeed 0"').read()
+        return res.strip().split()[-1]
+
+    def _getAllFanspeed(self):
+        res = []
+        for i in xrange(10):
+            speed = self._getSingleFanSpeed(i)
+            if speed == []:
+                return res
+            else:
+                res.append(speed.strip("%"))
+
 
 if __name__=="__main__":
     dataObj = DataHouse()
@@ -86,5 +100,5 @@ if __name__=="__main__":
     print dataObj._parseGPULoad()
     print dataObj._parseMemoryClock()
     print dataObj._getEthminerProcess()
-    # print dataObj._parseMemoryClock()
+    print dataObj.fanSpeeds
     # print dataObj._getCPUPercent()
