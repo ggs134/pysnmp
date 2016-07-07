@@ -76,13 +76,8 @@ class DataHouse:
         return bt
 
     def _getEthminerProcess(self):
-        for i in psutil.process_iter():
-            print i.name()
-            if i.name() == "ethminer":
-                return i
-            else:
-                return None
-
+        pid = os.popen("pidof ethminer").read().strip("\n")
+        return psutil.Process(int(pid))
 
 
 if __name__=="__main__":
