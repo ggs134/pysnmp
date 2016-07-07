@@ -84,7 +84,7 @@ class DataHouse:
         res = os.popen('env DISPLAY=:0.'+str(num)+' aticonfig --pplib-cmd "get fanspeed 0"').read()
         return res.strip().split()[-1]
 
-    def _getAllFanspeed(self):
+    def _getAllFanSpeed(self):
         res = []
         for i in xrange(10):
             speed = self._getSingleFanSpeed(i)
