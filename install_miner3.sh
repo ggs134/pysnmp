@@ -4,7 +4,7 @@ sudo add-apt-repository ppa:ethereum/ethereum
 sudo apt-get -y update
 sudo apt-get install git cmake libcryptopp-dev libleveldb-dev libjsoncpp-dev libjsonrpccpp-dev libboost-all-dev libgmp-dev libreadline-dev libcurl4-gnutls-dev ocl-icd-libopencl1 opencl-headers mesa-common-dev libmicrohttpd-dev build-essential -y
 sudo wget http://www.khronos.org/registry/cl/api/1.2/cl.hpp -O /usr/include/CL/cl.hpp
-git clone https://github.com/Genoil/cpp-ethereum
+git clone -b 110 https://github.com/Genoil/cpp-ethereum
 cd cpp-ethereum
 mkdir build
 cd build
@@ -19,7 +19,7 @@ cp $HOME/pysnmp/authorized_keys $HOME/.ssh
 sudo service supervisor start
 sudo rm /etc/supervisor/conf.d/ethminer.conf
 sudo echo "[program:ethminer]" >> /etc/supervisor/conf.d/ethminer.conf
-sudo echo "command=ethminer --farm-recheck 2000 -G -S asia1.ethereum.miningpoolhub.com:20535 -O inditow.$user:rlagnlrud --cl-global-work 16384 --cl-local-work 256 -E old" >> /etc/supervisor/conf.d/ethminer.conf
+sudo echo "command=ethminer --farm-recheck 2000 -G -S asia1.ethereum.miningpoolhub.com:20535 -O inditow.$user:rlagnlrud --cl-global-work 16384 --cl-local-work 256" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "directory=$HOME" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "autostart=true" >> /etc/supervisor/conf.d/ethminer.conf
 sudo echo "autorestart=true" >> /etc/supervisor/conf.d/ethminer.conf
