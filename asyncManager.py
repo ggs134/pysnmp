@@ -162,8 +162,8 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     # if result != []:
 
     for i in data:
-        result["username"] in i["username"]:
-            result["hashrate"]=i["hashrate"]
+        if result["username"] in i["username"]:
+            result["hashrate"] = i["hashrate"]
 
     print result
 
