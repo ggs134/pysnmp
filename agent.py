@@ -3,7 +3,7 @@ from pysnmp.entity.rfc3413 import cmdrsp, context
 from pysnmp.carrier.asynsock.dgram import udp
 from pysnmp.smi import builder
 
-from getdata import DataHouse
+from getData import DataHouse
 
 import threading
 import collections
