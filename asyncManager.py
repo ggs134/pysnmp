@@ -133,7 +133,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     'ethminerCPUPercent', 'ethminerMemoryPercent', 'ethminerRss', 'ethminerVms', 'ethminerShared', 'ethminerText',
     'ethminerLib', 'ethminerData', 'ethminerDirty', 'ethminerUss', 'ethminerPss', 'ethminerSwap',
     'ethminerReadCount', 'ethminerWriteCount', 'ethminerReadBytes', 'ethminerWriteBytes', 'ethminerNumThreads',
-    'ethminerCTXVolSwitches', 'ethminerCTXInvloSwitches']
+    'ethminerCTXVolSwitches', 'ethminerCTXInvloSwitches','fanspeed']
     if errorIndication:
         print(errorIndication)
         return 1
