@@ -148,11 +148,11 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     for oid, val in varBinds:
         if val is None:
             print(oid.prettyPrint())
-            result.update(keys[count]=val.prettyPrint())
+            result[keys[count]]=val.prettyPrint()
             count += 1
         else:
             print('%s = %s' % (oid.prettyPrint(), val.prettyPrint()))
-            result.update(keys[count]=val.prettyPrint())
+            result[keys[count]]=val.prettyPrint()
             count += 1
     # if result != []:
     print result
