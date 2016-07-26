@@ -127,7 +127,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     # print('%s via %s' % (authData, transportTarget))
     result = {}
     count = 0
-    keys = ['username','gpuTemperature', 'gpuLoad', 'coreClock', 'memoryClock', 'cpuPercent', 'virtualTotal', 'virtualAvailable',
+    keys = ['username','gpuTemperature', 'gpuLoad', 'coreClock', 'cpuPercent', 'virtualTotal', 'virtualAvailable',
     'virtualPercent', 'virtualUsed','virtualFree','virtualActive','virtualInactive','bytesSent','bytesRecv',
     'packetsSent', 'packetsRecv', 'errin', 'errout', 'dropIn', 'dropOut', 'bootTime', 'ethminerStatus',
     'ethminerCPUPercent', 'ethminerMemoryPercent', 'ethminerRss', 'ethminerVms', 'ethminerShared', 'ethminerText',
