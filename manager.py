@@ -5,7 +5,7 @@ cmdGen = cmdgen.CommandGenerator()
 
 errorIndication, errorStatus, errorIndex, varBinds = cmdGen.getCmd(
     cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
-    cmdgen.UdpTransportTarget(('onther.iptime.org', 161)),
+    cmdgen.UdpTransportTarget(('192.168.0.39', 161)),
     cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,2,0).addAsn1MibSource('./'),
     cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,1,0).addAsn1MibSource('./')
 )
