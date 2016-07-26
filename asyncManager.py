@@ -63,8 +63,8 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
         else:
             print('%s = %s' % (oid.prettyPrint(), val.prettyPrint()))
             result.append(val.prettyPrint())
-
-    print result
+    if result != []:
+        print result
 
 cmdGen  = cmdgen.AsynCommandGenerator()
 
