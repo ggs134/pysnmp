@@ -166,7 +166,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     for i in data:
         if result["username"] in i["username"]:
             result["hashrate"] = i["hashrate"]
-    result["time"] = time.gmtime()
+    result["time"] = time.time()
 
     print result
 
