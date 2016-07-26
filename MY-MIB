@@ -16,4 +16,244 @@ hashrateDescription OBJECT-TYPE
     STATUS current
     DESCRIPTION "A description of hashrate"
     ::= {onther 2}
+gpuTemperature OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of temprature"
+    ::= {onther 3}
+gpuLoad OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of gpu load"
+    ::= {onther 4}
+coreClock OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of core clock"
+    ::= {onther 5}
+cpuPercent OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of cpu usage percent"
+    ::= {onther 6}
+virtualTotal OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of total virtual memory"
+    ::= {onther 7}
+virtualAvailable OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of available virtual memory"
+    ::= {onther 8}
+virtualPercent OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of virtual percent memory"
+    ::= {onther 9}
+virtualUsed OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of virtual used memory"
+    ::= {onther 10}
+virtualFree OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of virtual free momory"
+    ::= {onther 11}
+virtualActive OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of virtual active memory"
+    ::= {onther 12}
+virtualInactive OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of virtual inactive memory"
+    ::= {onther 13}
+bytesSent OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of bytes sent"
+    ::= {onther 14}
+bytesRecv OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of bytes recv"
+    ::= {onther 15}
+packetsSent OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "a packets sent"
+    ::= {onther 16}
+packetsRecv OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "a packets recieve"
+    ::= {onther 17}
+errin OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of err in"
+    ::= {onther 18}
+errout OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of err out"
+    ::= {onther 19}
+dropIn OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of drop in"
+    ::= {onther 20}
+dropOut OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of drop out"
+    ::= {onther 21}
+bootTime OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of boot time"
+    ::= {onther 22}
+ethminerStatus OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer status"
+    ::= {onther 23}
+ethminerCPUPercent OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer CPU percent"
+    ::= {onther 24}
+ethminerMemoryPercent OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory percent"
+    ::= {onther 25}
+ethminerRss OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory rss"
+    ::= {onther 26}
+ethminerVms OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory vms"
+    ::= {onther 27}
+ethminerShared OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory shared"
+    ::= {onther 28}
+ethminerText OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer momory text"
+    ::= {onther 29}
+ethminerLib OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory Lib"
+    ::= {onther 30}
+ethminerData OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "a description of ethminer memory Data "
+    ::= {onther 31}
+ethminerDirty OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory dirty"
+    ::= {onther 32}
+ethminerUss OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory uss"
+    ::= {onther 33}
+ethminerPss OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory pss"
+    ::= {onther 34}
+ethminerSwap OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer memory swap"
+    ::= {onther 35}
+ethminerReadCount OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer read count"
+    ::= {onther 36}
+ethminerWriteCount OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer write count"
+    ::= {onther 37}
+ethminerReadBytes OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer read bytes"
+    ::= {onther 38}
+ethminerWriteBytes OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer write bytes"
+    ::= {onther 39}
+ethminerNumThreads OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ethminer num threads"
+    ::= {onther 40}
+ethminerCTXVolSwitches OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of virtual free momory"
+    ::= {onther 41}
+ethminerCTXInvolSwitches OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ctx invlo switches"
+    ::= {onther 42}
 END
