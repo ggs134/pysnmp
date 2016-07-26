@@ -63,6 +63,8 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
             print('%s = %s' % (oid.prettyPrint(), val.prettyPrint()))
             result.append(val.prettyPrint())
 
+    print result
+
 cmdGen  = cmdgen.AsynCommandGenerator()
 
 # Submit GET requests
