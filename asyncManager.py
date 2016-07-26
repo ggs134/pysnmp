@@ -43,8 +43,9 @@ targets = (
 
 # Wait for responses or errors
 def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds, cbCtx):
-    (authData, transportTarget, result) = cbCtx
+    (authData, transportTarget) = cbCtx
     # print('%s via %s' % (authData, transportTarget))
+    result = []
     if errorIndication:
         print(errorIndication)
         return 1
@@ -64,7 +65,6 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
             result.append(val.prettyPrint())
 
     print result
-    result = []
 
 cmdGen  = cmdgen.AsynCommandGenerator()
 
@@ -75,7 +75,7 @@ for authData, transportTarget, varNames in targets:
     cmdGen.getCmd(
         authData, transportTarget, varNames,
         # User-space callback function and its context
-        (cbFun, (authData, transportTarget, result)),
+        (cbFun, (authData, transportTarget)),
         lookupNames=True, lookupValues=True
     )
 print result
