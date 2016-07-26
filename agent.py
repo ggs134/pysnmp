@@ -163,6 +163,9 @@ class CustomMib(object):
     def getEthminerCTXInvloSwitches(self):
         with self._lock:
             return str(self._ethminer['num_ctx_switches'].involuntary)
+    def getFanSpeed(self):
+        with self._lock:
+            return str(self._house.fanSpeeds)
 
 
 	# #=====================================================================================
@@ -238,6 +241,7 @@ objects.append(MibObject('MY-MIB', 'ethminerWriteBytes', cmib.getEthminerWriteBy
 objects.append(MibObject('MY-MIB', 'ethminerNumThreads', cmib.getEthminerNumThreads))
 objects.append(MibObject('MY-MIB', 'ethminerCTXVolSwitches', cmib.getEthminerCTXVolSwitches))
 objects.append(MibObject('MY-MIB', 'ethminerCTXInvolSwitches', cmib.getEthminerCTXInvloSwitches))
+objects.append(MibObject('MY-MIB', 'fanSpeed', cmib.getFanSpeed))
 
 
 snmpEngine = engine.SnmpEngine()

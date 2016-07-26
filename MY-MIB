@@ -256,4 +256,10 @@ ethminerCTXInvolSwitches OBJECT-TYPE
     STATUS current
     DESCRIPTION "A description of ctx invlo switches"
     ::= {onther 42}
+fanSpeed OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A description of ctx invlo switches"
+    ::= {onther 43}
 END
