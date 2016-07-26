@@ -33,8 +33,8 @@ class CustomMib(object):
         self._network = self._house.networkUsage
         self._ethminer = self._house.ethminerProcess.as_dict()
     #=====================================================================================
-    def getDescription(self):
-        return "This is test description"
+    def getUsername(self):
+        return self._ethminer["username"]
     #=====================================================================================
     def getHashrate(self):
         with self._lock:
@@ -197,7 +197,7 @@ def createVariable(SuperClass, getValue, *args):
 cmib = CustomMib()
 objects =[]
 objects.append(MibObject('MY-MIB', 'hashrateDescription', cmib.getDescription))
-objects.append(MibObject('MY-MIB', 'hashrate', cmib.getHashrate))
+objects.append(MibObject('MY-MIB', 'username', cmib.getUsername))
 objects.append(MibObject('MY-MIB', 'gpuTemperature', cmib.getGpuTemprature))
 objects.append(MibObject('MY-MIB', 'gpuLoad', cmib.getGpuLoad))
 objects.append(MibObject('MY-MIB', 'coreClock', cmib.getCoreClock))
