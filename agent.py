@@ -196,7 +196,7 @@ def createVariable(SuperClass, getValue, *args):
 
 cmib = CustomMib()
 objects =[]
-objects.append(MibObject('MY-MIB', 'hashrateDescription', cmib.getDescription))
+objects.append(MibObject('MY-MIB', 'hashrate', cmib.getHashrate))
 objects.append(MibObject('MY-MIB', 'username', cmib.getUsername))
 objects.append(MibObject('MY-MIB', 'gpuTemperature', cmib.getGpuTemprature))
 objects.append(MibObject('MY-MIB', 'gpuLoad', cmib.getGpuLoad))

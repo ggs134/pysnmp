@@ -10,7 +10,7 @@ hashrate OBJECT-TYPE
     STATUS current
     DESCRIPTION "A hashrate of machine."
     ::= {onther 1}
-hashrateDescription OBJECT-TYPE
+username OBJECT-TYPE
     SYNTAX OCTET STRING
     MAX-ACCESS read-only
     STATUS current
