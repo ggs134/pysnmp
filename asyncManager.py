@@ -64,6 +64,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
             result.append(val.prettyPrint())
 
     print result
+    result = []
 
 cmdGen  = cmdgen.AsynCommandGenerator()
 
