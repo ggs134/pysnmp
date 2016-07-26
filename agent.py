@@ -45,124 +45,124 @@ class CustomMib(object):
             return self._house.temperature
     def getGpuLoad(self):
         with self._lock:
-            return self._house.gpuLoad
+            return str(self._house.gpuLoad)
     def getCoreClock(self):
         with self._lock:
-            return self._house.coreClock
+            return str(self._house.coreClock)
     def getMemoryClock(self):
         with self._lock:
-            return self._house.memoryClock
+            return str(self._house.memoryClock)
     def getCpuPercent(self):
         with self._lock:
-            return self._house.cpuPercent
+            return str(self._house.cpuPercent)
     def getVirtualTotal(self):
         with self._lock:
-            return self._virtual.total
+            return str(self._virtual.total)
     def getVirtualAvailable(self):
         with self._lock:
-            return self._virtual.available
+            return str(self._virtual.available)
     def getVirtualPercent(self):
         with self._lock:
-            return self._virtual.percent
+            return str(self._virtual.percent)
     def getVirtualUsed(self):
         with self._lock:
-            return self._virtual.used
+            return str(self._virtual.used)
     def getVirtualFree(self):
         with self._lock:
-            return self._virtual.free
+            return str(self._virtual.free)
     def getVirtualActive(self):
         with self._lock:
-            return self._virtual.active
+            return str(self._virtual.active)
     def getVirtualInactive(self):
         with self._lock:
-            return self._virtual.inactive
+            return str(self._virtual.inactive)
     def getBytesSent(self):
         with self._lock:
-            return self._network.bytes_sent
+            return str(self._network.bytes_sent)
     def getBytesRecv(self):
         with self._lock:
-            return self._network.bytes_recv
+            return str(self._network.bytes_recv)
     def getPacketsSent(self):
         with self._lock:
-            return self._network.packets_sent
+            return str(self._network.packets_sent)
     def getPacketsRecv(self):
         with self._lock:
-            return self._network.packets_recv
+            return str(self._network.packets_recv)
     def getErrin(self):
         with self._lock:
-            return self._network.errin
+            return str(self._network.errin)
     def getErrout(self):
         with self._lock:
-            return self._network.errout
+            return str(self._network.errout)
     def getDropIn(self):
         with self._lock:
-            return self._network.dropin
+            return str(self._network.dropin)
     def getDropOut(self):
         with self._lock:
-            return self._network.dropout
+            return str(self._network.dropout)
     def getBootTime(self):
         with self._lock:
-            return self._house.bootTime
+            return str(self._house.bootTime)
     def getEthminerStatus(self):
         with self._lock:
-            return self._ethminer["status"]
+            return str(self._ethminer["status"])
     def getEthminerCPUPercent(self):
         with self._lock:
-            return self._ethminer["cpu_percent"]
+            return str(self._ethminer["cpu_percent"])
     def getEthminerMemoryPercent(self):
         with self._lock:
-            return self._ethminer["memory_percent"]
+            return str(self._ethminer["memory_percent"])
     def getEthminerRss(self):
         with self._lock:
-            return self._ethminer["memory_info"].rss
+            return str(self._ethminer["memory_info"].rss)
     def getEthminerVms(self):
         with self._lock:
-            return self._ethminer["memory_info"].vms
+            return str(self._ethminer["memory_info"].vms)
     def getEthminerShared(self):
         with self._lock:
-            return self._ethminer["memory_info"].shared
+            return str(self._ethminer["memory_info"].shared)
     def getEthminerText(self):
         with self._lock:
-            return self._ethminer["memory_info"].text
+            return str(self._ethminer["memory_info"].text)
     def getEthminerLib(self):
         with self._lock:
-            return self._ethminer["memory_info"].lib
+            return str(self._ethminer["memory_info"].lib)
     def getEthminerData(self):
         with self._lock:
-            return self._ethminer["memory_info"].data
+            return str(self._ethminer["memory_info"].data)
     def getEthminerDirty(self):
         with self._lock:
-            return self._ethminer["memory_info"].dirty
+            return str(self._ethminer["memory_info"].dirty)
     def getEthminerUss(self):
         with self._lock:
-            return self._ethminer["memory_full_info"].uss
+            return str(self._ethminer["memory_full_info"].uss)
     def getEthminerPss(self):
         with self._lock:
-            return self._ethminer["memory_full_info"].pss
+            return str(self._ethminer["memory_full_info"].pss)
     def getEthminerSwap(self):
         with self._lock:
-            return self._ethminer["memory_full_info"].swap
+            return str(self._ethminer["memory_full_info"].swap)
     def getEthminerReadCount(self):
         with self._lock:
-            return self._ethminer["io_counters"].read_count
+            return str(self._ethminer["io_counters"].read_count)
     def getEthminerWriteCount(self):
         with self._lock:
-            return self._ethminer["io_counters"].write_count
+            return str(self._ethminer["io_counters"].write_count)
     def getEthminerReadBytes(self):
         with self._lock:
-            return self._ethminer["io_counters"].read_bytes
+            return str(self._ethminer["io_counters"].read_bytes)
     def getEthminerWriteBytes(self):
         with self._lock:
-            return self._ethminer["io_counters"].write_bytes
+            return str(self._ethminer["io_counters"].write_bytes)
     def getEthminerNumThreads(self):
         with self._lock:
-            return self._ethminer["num_threads"]
+            return str(self._ethminer["num_threads"])
     def getEthminerCTXVolSwitches(self):
         with self._lock:
-            return self._ethminer['num_ctx_switches'].voluntary
+            return str(self._ethminer['num_ctx_switches'].voluntary)
     def getEthminerCTXInvloSwitches(self):
         with self._lock:
-            return self._ethminer['num_ctx_switches'].involuntary
+            return str(self._ethminer['num_ctx_switches'].involuntary)
 
 
 	# #=====================================================================================
