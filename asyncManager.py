@@ -63,14 +63,14 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
         else:
             print('%s = %s' % (oid.prettyPrint(), val.prettyPrint()))
             result.append(val.prettyPrint())
-    if result != []:
-        print result
+    # if result != []:
+    print result
 
 cmdGen  = cmdgen.AsynCommandGenerator()
 
 # Submit GET requests
 
-result = []
+# result = []
 for authData, transportTarget, varNames in targets:
     cmdGen.getCmd(
         authData, transportTarget, varNames,
@@ -78,6 +78,6 @@ for authData, transportTarget, varNames in targets:
         (cbFun, (authData, transportTarget)),
         lookupNames=True, lookupValues=True
     )
-print result
+# print result
 
 cmdGen.snmpEngine.transportDispatcher.runDispatcher()
