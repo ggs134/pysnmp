@@ -1,5 +1,7 @@
 from pysnmp.entity.rfc3413.oneliner import cmdgen
+
 import requests
+import time
 
 response = requests.get("http://ethereum.miningpoolhub.com/index.php?page=api&action=getuserworkers&api_key=a8c9f5ea1a4045f6809c9a47c4746f5ae4aa5e136bf96ec0ce4223734c96a128")
 json_response = response.json()
@@ -164,6 +166,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     for i in data:
         if result["username"] in i["username"]:
             result["hashrate"] = i["hashrate"]
+    result["time"] = time.gmtime()
 
     print result
 
