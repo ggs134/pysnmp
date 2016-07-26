@@ -13,7 +13,7 @@ with open("/etc/supervisor/conf.d/monitor.conf", 'w') as mFile:
 
 with open("/etc/supervisor/conf.d/agent.conf", 'w') as mFile:
     mFile.write("[program:agent]\n")
-    mFile.write("command=python"+" "+filepath+"/agent.py"+" "+os.environ["HOME"]+"/ethminer.err.log"+"\n")
+    mFile.write("command=python"+" "+filepath+"/agent.py"+"\n")
     mFile.write("autostart=true\n")
     mFile.write("autorestart=true\n")
     mFile.write("startretries=3\n")

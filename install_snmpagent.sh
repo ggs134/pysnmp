@@ -13,6 +13,8 @@ apt-get install -y supervisor screen xinit
 dpkg-reconfigure x11-common
 pip install psutil
 
+build-pysnmp-mib -o $HOME/pysnmp/MY-MIB.py $HOME/pysnmp/MY-MIB
+
 ##supervisor세팅
 mkdir -p $HOME/log
 
