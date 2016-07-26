@@ -28,7 +28,7 @@ class CustomMib(object):
 #=====================================================================================
     def __init__(self):
         self._lock = threading.RLock()
-        self._house = DataHouse
+        self._house = DataHouse()
         self._virtual = self._house.virtualMemory
         self._network = self._house.networkUsage
         self._ethminer = self._house.ethminerProcess.as_dict()
