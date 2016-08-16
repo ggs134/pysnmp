@@ -8,6 +8,10 @@ response = requests.get("http://ethereum.miningpoolhub.com/index.php?page=api&ac
 json_response = response.json()
 data = json_response["getuserworkers"]["data"]
 
+response2 = requests.get("http://ethereum-classic.miningpoolhub.com/index.php?page=api&action=getuserworkers&api_key=a8c9f5ea1a4045f6809c9a47c4746f5ae4aa5e136bf96ec0ce4223734c96a128")
+json_response2 = response2.json()
+dataC = json_response2["getuserworkers"]["data"]
+
 #mongo client
 cli = pymongo.MongoClient('localhost', 27017)
 db = cli['di']
@@ -90,11 +94,11 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
 
     for oid, val in varBinds:
         if val is None:
-            print(oid.prettyPrint())
+            # print(oid.prettyPrint())
             result[keys[count]]=val.prettyPrint()
             count += 1
         else:
-            print('%s = %s' % (oid.prettyPrint(), val.prettyPrint()))
+            # print('%s = %s' % (oid.prettyPrint(), val.prettyPrint()))
             result[keys[count]]=val.prettyPrint()
             count += 1
     # if result != []:
@@ -102,10 +106,13 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     for i in data:
         if result["username"] in i["username"]:
             result["hashrate"] = i["hashrate"]
+    for j in data2:
+        if result["username"] in j["username"]:
+            result["hashrateC"] = j["hashrate"]
     result["time"] = time.time()
 
     # print result
-    db.miners.insert(result)
+    db[result["username"]].insert(result)
 
 cmdGen  = cmdgen.AsynCommandGenerator()
 
