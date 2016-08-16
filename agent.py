@@ -201,7 +201,7 @@ def createVariable(SuperClass, getValue, *args):
 class SNMPAgent(object):
     def __init__(self, objects):
 
-        snmpEngine = engine.SnmpEngine()
+        self._snmpEngine = engine.SnmpEngine()
 
         config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
         config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
