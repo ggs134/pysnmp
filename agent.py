@@ -32,6 +32,7 @@ class CustomMib(object):
         self._virtual = self._house.virtualMemory
         self._network = self._house.networkUsage
         self._ethminer = self._house.ethminerProcess.as_dict()
+
     #=====================================================================================
     def getUsername(self):
         return self._ethminer["username"]
@@ -197,92 +198,120 @@ def createVariable(SuperClass, getValue, *args):
 
 #amin code
 
-cmib = CustomMib()
-objects =[]
-objects.append(MibObject('MY-MIB', 'hashrate', cmib.getHashrate))
-objects.append(MibObject('MY-MIB', 'username', cmib.getUsername))
-objects.append(MibObject('MY-MIB', 'gpuTemperature', cmib.getGpuTemprature))
-objects.append(MibObject('MY-MIB', 'gpuLoad', cmib.getGpuLoad))
-objects.append(MibObject('MY-MIB', 'coreClock', cmib.getCoreClock))
-objects.append(MibObject('MY-MIB', 'cpuPercent', cmib.getCpuPercent))
-objects.append(MibObject('MY-MIB', 'virtualTotal', cmib.getVirtualTotal))
-objects.append(MibObject('MY-MIB', 'virtualAvailable', cmib.getVirtualAvailable))
-objects.append(MibObject('MY-MIB', 'virtualPercent', cmib.getVirtualPercent))
-objects.append(MibObject('MY-MIB', 'virtualUsed', cmib.getVirtualUsed))
-objects.append(MibObject('MY-MIB', 'virtualFree', cmib.getVirtualFree))
-objects.append(MibObject('MY-MIB', 'virtualActive', cmib.getVirtualActive))
-objects.append(MibObject('MY-MIB', 'virtualInactive', cmib.getVirtualInactive))
-objects.append(MibObject('MY-MIB', 'bytesSent', cmib.getBytesSent))
-objects.append(MibObject('MY-MIB', 'bytesRecv', cmib.getBytesRecv))
-objects.append(MibObject('MY-MIB', 'packetsSent', cmib.getPacketsSent))
-objects.append(MibObject('MY-MIB', 'packetsRecv', cmib.getPacketsRecv))
-objects.append(MibObject('MY-MIB', 'errin', cmib.getErrin))
-objects.append(MibObject('MY-MIB', 'errout', cmib.getErrout))
-objects.append(MibObject('MY-MIB', 'dropIn', cmib.getDropIn))
-objects.append(MibObject('MY-MIB', 'dropOut', cmib.getDropOut))
-objects.append(MibObject('MY-MIB', 'bootTime', cmib.getBootTime))
-objects.append(MibObject('MY-MIB', 'ethminerStatus', cmib.getEthminerStatus))
-objects.append(MibObject('MY-MIB', 'ethminerCPUPercent', cmib.getEthminerCPUPercent))
-objects.append(MibObject('MY-MIB', 'ethminerMemoryPercent', cmib.getEthminerMemoryPercent))
-objects.append(MibObject('MY-MIB', 'ethminerRss', cmib.getEthminerRss))
-objects.append(MibObject('MY-MIB', 'ethminerVms', cmib.getEthminerVms))
-objects.append(MibObject('MY-MIB', 'ethminerShared', cmib.getEthminerShared))
-objects.append(MibObject('MY-MIB', 'ethminerText', cmib.getEthminerText))
-objects.append(MibObject('MY-MIB', 'ethminerLib', cmib.getEthminerLib))
-objects.append(MibObject('MY-MIB', 'ethminerData', cmib.getEthminerData))
-objects.append(MibObject('MY-MIB', 'ethminerDirty', cmib.getEthminerDirty))
-objects.append(MibObject('MY-MIB', 'ethminerUss', cmib.getEthminerUss))
-objects.append(MibObject('MY-MIB', 'ethminerPss', cmib.getEthminerPss))
-objects.append(MibObject('MY-MIB', 'ethminerSwap', cmib.getEthminerSwap))
-objects.append(MibObject('MY-MIB', 'ethminerReadCount', cmib.getEthminerReadCount))
-objects.append(MibObject('MY-MIB', 'ethminerWriteCount', cmib.getEthminerWriteCount))
-objects.append(MibObject('MY-MIB', 'ethminerReadBytes', cmib.getEthminerReadBytes))
-objects.append(MibObject('MY-MIB', 'ethminerWriteBytes', cmib.getEthminerWriteBytes))
-objects.append(MibObject('MY-MIB', 'ethminerNumThreads', cmib.getEthminerNumThreads))
-objects.append(MibObject('MY-MIB', 'ethminerCTXVolSwitches', cmib.getEthminerCTXVolSwitches))
-objects.append(MibObject('MY-MIB', 'ethminerCTXInvolSwitches', cmib.getEthminerCTXInvloSwitches))
-objects.append(MibObject('MY-MIB', 'fanSpeed', cmib.getFanSpeed))
+class SNMPAgent(object):
+    def __init__(self, objects):
+
+        snmpEngine = engine.SnmpEngine()
+
+        config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
+        config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
+        config.addVacmUser(snmpEngine, 3, _account, "authPriv",(1,3,6,1,4,1), (1,3,6,1,4,1))
+
+        snmpContext = context.SnmpContext(snmpEngine)
 
 
-snmpEngine = engine.SnmpEngine()
-
-config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
-config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
-config.addVacmUser(snmpEngine, 3, _account, "authPriv",(1,3,6,1,4,1), (1,3,6,1,4,1))
-
-snmpContext = context.SnmpContext(snmpEngine)
+        #builder create
+        mibBuilder = snmpContext.getMibInstrum().getMibBuilder()
+        mibSources = mibBuilder.getMibSources() + (builder.DirMibSource('.'),)+(builder.DirMibSource(filepath),)
+        mibBuilder.setMibSources(*mibSources)
 
 
-#builder create
-mibBuilder = snmpContext.getMibInstrum().getMibBuilder()
-mibSources = mibBuilder.getMibSources() + (builder.DirMibSource('.'),)+(builder.DirMibSource(filepath),)
-mibBuilder.setMibSources(*mibSources)
+        MibScalarInstance, = mibBuilder.importSymbols('SNMPv2-SMI','MibScalarInstance')
 
+        for mibObject in objects:
+            nextVar, = mibBuilder.importSymbols(mibObject.mibName,
+                                                mibObject.objectType)
+            instance = createVariable(MibScalarInstance, mibObject.valueGetFunc, nextVar.name, (0,),  nextVar.syntax)
+            #need to export as <var name>Instance
+            instanceDict = {str(nextVar.name)+"Instance":instance}
+            mibBuilder.exportSymbols(mibObject.mibName, **instanceDict)
 
-MibScalarInstance, = mibBuilder.importSymbols('SNMPv2-SMI','MibScalarInstance')
+        cmdrsp.GetCommandResponder(snmpEngine, snmpContext)
+        cmdrsp.SetCommandResponder(snmpEngine, snmpContext)
+        cmdrsp.NextCommandResponder(snmpEngine, snmpContext)
+        cmdrsp.BulkCommandResponder(snmpEngine, snmpContext)
 
-for mibObject in objects:
-    nextVar, = mibBuilder.importSymbols(mibObject.mibName,
-                                        mibObject.objectType)
-    instance = createVariable(MibScalarInstance, mibObject.valueGetFunc, nextVar.name, (0,),  nextVar.syntax)
-    #need to export as <var name>Instance
-    instanceDict = {str(nextVar.name)+"Instance":instance}
-    mibBuilder.exportSymbols(mibObject.mibName, **instanceDict)
-
-cmdrsp.GetCommandResponder(snmpEngine, snmpContext)
-cmdrsp.SetCommandResponder(snmpEngine, snmpContext)
-cmdrsp.NextCommandResponder(snmpEngine, snmpContext)
-cmdrsp.BulkCommandResponder(snmpEngine, snmpContext)
+    def serve_forever(self):
+		print "Starting agent"
+		self._snmpEngine.transportDispatcher.jobStarted(1)
+		try:
+			self._snmpEngine.transportDispatcher.runDispatcher()
+		except:
+			self._snmpEngine.transportDispatcher.closeDispatcher()
+			raise
 
 # Register an imaginary never-ending job to keep I/O dispatcher running forever
-snmpEngine.transportDispatcher.jobStarted(1)
+# snmpEngine.transportDispatcher.jobStarted(1)
+
+class Worker(threading.Thread):
+	"""Just to demonstrate updating the MIB
+	and sending traps
+	"""
+
+	def __init__(self, agent, mib):
+		threading.Thread.__init__(self)
+		self._agent = agent
+		self._mib = mib
+		self.setDaemon(True)
+
+	def run(self):
+		while True:
+			time.sleep(15)
+			mib.__init__()
+            print "refreshing..."
+			# agent.sendTrap()
 
 
+if __name__== "__main__":
+    cmib = CustomMib()
+    objects =[]
+    objects.append(MibObject('MY-MIB', 'hashrate', cmib.getHashrate))
+    objects.append(MibObject('MY-MIB', 'username', cmib.getUsername))
+    objects.append(MibObject('MY-MIB', 'gpuTemperature', cmib.getGpuTemprature))
+    objects.append(MibObject('MY-MIB', 'gpuLoad', cmib.getGpuLoad))
+    objects.append(MibObject('MY-MIB', 'coreClock', cmib.getCoreClock))
+    objects.append(MibObject('MY-MIB', 'cpuPercent', cmib.getCpuPercent))
+    objects.append(MibObject('MY-MIB', 'virtualTotal', cmib.getVirtualTotal))
+    objects.append(MibObject('MY-MIB', 'virtualAvailable', cmib.getVirtualAvailable))
+    objects.append(MibObject('MY-MIB', 'virtualPercent', cmib.getVirtualPercent))
+    objects.append(MibObject('MY-MIB', 'virtualUsed', cmib.getVirtualUsed))
+    objects.append(MibObject('MY-MIB', 'virtualFree', cmib.getVirtualFree))
+    objects.append(MibObject('MY-MIB', 'virtualActive', cmib.getVirtualActive))
+    objects.append(MibObject('MY-MIB', 'virtualInactive', cmib.getVirtualInactive))
+    objects.append(MibObject('MY-MIB', 'bytesSent', cmib.getBytesSent))
+    objects.append(MibObject('MY-MIB', 'bytesRecv', cmib.getBytesRecv))
+    objects.append(MibObject('MY-MIB', 'packetsSent', cmib.getPacketsSent))
+    objects.append(MibObject('MY-MIB', 'packetsRecv', cmib.getPacketsRecv))
+    objects.append(MibObject('MY-MIB', 'errin', cmib.getErrin))
+    objects.append(MibObject('MY-MIB', 'errout', cmib.getErrout))
+    objects.append(MibObject('MY-MIB', 'dropIn', cmib.getDropIn))
+    objects.append(MibObject('MY-MIB', 'dropOut', cmib.getDropOut))
+    objects.append(MibObject('MY-MIB', 'bootTime', cmib.getBootTime))
+    objects.append(MibObject('MY-MIB', 'ethminerStatus', cmib.getEthminerStatus))
+    objects.append(MibObject('MY-MIB', 'ethminerCPUPercent', cmib.getEthminerCPUPercent))
+    objects.append(MibObject('MY-MIB', 'ethminerMemoryPercent', cmib.getEthminerMemoryPercent))
+    objects.append(MibObject('MY-MIB', 'ethminerRss', cmib.getEthminerRss))
+    objects.append(MibObject('MY-MIB', 'ethminerVms', cmib.getEthminerVms))
+    objects.append(MibObject('MY-MIB', 'ethminerShared', cmib.getEthminerShared))
+    objects.append(MibObject('MY-MIB', 'ethminerText', cmib.getEthminerText))
+    objects.append(MibObject('MY-MIB', 'ethminerLib', cmib.getEthminerLib))
+    objects.append(MibObject('MY-MIB', 'ethminerData', cmib.getEthminerData))
+    objects.append(MibObject('MY-MIB', 'ethminerDirty', cmib.getEthminerDirty))
+    objects.append(MibObject('MY-MIB', 'ethminerUss', cmib.getEthminerUss))
+    objects.append(MibObject('MY-MIB', 'ethminerPss', cmib.getEthminerPss))
+    objects.append(MibObject('MY-MIB', 'ethminerSwap', cmib.getEthminerSwap))
+    objects.append(MibObject('MY-MIB', 'ethminerReadCount', cmib.getEthminerReadCount))
+    objects.append(MibObject('MY-MIB', 'ethminerWriteCount', cmib.getEthminerWriteCount))
+    objects.append(MibObject('MY-MIB', 'ethminerReadBytes', cmib.getEthminerReadBytes))
+    objects.append(MibObject('MY-MIB', 'ethminerWriteBytes', cmib.getEthminerWriteBytes))
+    objects.append(MibObject('MY-MIB', 'ethminerNumThreads', cmib.getEthminerNumThreads))
+    objects.append(MibObject('MY-MIB', 'ethminerCTXVolSwitches', cmib.getEthminerCTXVolSwitches))
+    objects.append(MibObject('MY-MIB', 'ethminerCTXInvolSwitches', cmib.getEthminerCTXInvloSwitches))
+    objects.append(MibObject('MY-MIB', 'fanSpeed', cmib.getFanSpeed))
 
-
-# Run I/O dispatcher which would receive queries and send responses
-try:
-    snmpEngine.transportDispatcher.runDispatcher()
-except:
-    snmpEngine.transportDispatcher.closeDispatcher()
-    raise
+    agent = SNMPAgent(objects)
+    Worker(agent, cmib).start()
+    try:
+		agent.serve_forever()
+	except KeyboardInterrupt:
+		print "Shutting down"
