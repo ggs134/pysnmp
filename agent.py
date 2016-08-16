@@ -203,7 +203,7 @@ class SNMPAgent(object):
 
         self._snmpEngine = engine.SnmpEngine()
 
-        config.addSocketTransport( snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
+        config.addSocketTransport( self._snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
         config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
         config.addVacmUser(snmpEngine, 3, _account, "authPriv",(1,3,6,1,4,1), (1,3,6,1,4,1))
 
