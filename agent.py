@@ -312,6 +312,6 @@ if __name__== "__main__":
     agent = SNMPAgent(objects)
     Worker(agent, cmib).start()
     try:
-		agent.serve_forever()
-	except KeyboardInterrupt:
-		print "Shutting down"
+        agent.serve_forever()
+    except KeyboardInterrupt:
+        print "Shutting down"
