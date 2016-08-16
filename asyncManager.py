@@ -106,7 +106,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     for i in data:
         if result["username"] in i["username"]:
             result["hashrate"] = i["hashrate"]
-    for j in data2:
+    for j in dataC:
         if result["username"] in j["username"]:
             result["hashrateC"] = j["hashrate"]
     result["time"] = time.time()
