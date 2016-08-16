@@ -65,6 +65,8 @@ targets = (
     # miner1 target (SNMPv3 over IPv4/UDP)
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
       cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60001)),smiSet ),
+    ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
+      cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60002)),smiSet ),
 
 )
 
