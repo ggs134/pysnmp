@@ -257,7 +257,7 @@ class Worker(threading.Thread):
 	def run(self):
 		while True:
 			time.sleep(15)
-			mib.__init__()
+			self._mib.__init__()
             # print "refreshing..."
 			# agent.sendTrap()
 
