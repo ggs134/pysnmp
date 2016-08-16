@@ -204,14 +204,14 @@ class SNMPAgent(object):
         self._snmpEngine = engine.SnmpEngine()
 
         config.addSocketTransport( self._snmpEngine, udp.domainName, udp.UdpTransport().openServerMode((_addr, _port)))
-        config.addV3User(snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
-        config.addVacmUser(snmpEngine, 3, _account, "authPriv",(1,3,6,1,4,1), (1,3,6,1,4,1))
+        config.addV3User(self._snmpEngine,_account,config.usmHMACMD5AuthProtocol,_auth_key,config.usmDESPrivProtocol,_priv_key)
+        config.addVacmUser(self._snmpEngine, 3, _account, "authPriv",(1,3,6,1,4,1), (1,3,6,1,4,1))
 
-        snmpContext = context.SnmpContext(snmpEngine)
+        self._snmpContext = context.SnmpContext(self._snmpEngine)
 
 
         #builder create
-        mibBuilder = snmpContext.getMibInstrum().getMibBuilder()
+        mibBuilder = self._snmpContext.getMibInstrum().getMibBuilder()
         mibSources = mibBuilder.getMibSources() + (builder.DirMibSource('.'),)+(builder.DirMibSource(filepath),)
         mibBuilder.setMibSources(*mibSources)
 
@@ -226,10 +226,10 @@ class SNMPAgent(object):
             instanceDict = {str(nextVar.name)+"Instance":instance}
             mibBuilder.exportSymbols(mibObject.mibName, **instanceDict)
 
-        cmdrsp.GetCommandResponder(snmpEngine, snmpContext)
-        cmdrsp.SetCommandResponder(snmpEngine, snmpContext)
-        cmdrsp.NextCommandResponder(snmpEngine, snmpContext)
-        cmdrsp.BulkCommandResponder(snmpEngine, snmpContext)
+        cmdrsp.GetCommandResponder(self._snmpEngine, self._snmpContext)
+        cmdrsp.SetCommandResponder(self._snmpEngine, self._snmpContext)
+        cmdrsp.NextCommandResponder(self._snmpEngine, self._snmpContext)
+        cmdrsp.BulkCommandResponder(self._snmpEngine, self._snmpContext)
 
     def serve_forever(self):
 		print "Starting agent"
