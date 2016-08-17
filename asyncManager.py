@@ -73,8 +73,9 @@ targets = (
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60006)),smiSet ),
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
-        cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60008)),smiSet ),    
-
+        cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60008)),smiSet ),
+    ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
+        cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60014)),smiSet ),   
 )
 
 # Wait for responses or errors
