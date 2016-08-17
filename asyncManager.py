@@ -68,14 +68,21 @@ targets = (
     #miner3
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
       cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60003)),smiSet ),
+    #miner4
+    ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
+      cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60004)),smiSet ),
+     #miner5
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60005)),smiSet ),
+    #miner6
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60006)),smiSet ),
+    #miner8
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60008)),smiSet ),
+    #miner14
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
-        cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60014)),smiSet ),   
+        cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60014)),smiSet ),
 )
 
 # Wait for responses or errors
