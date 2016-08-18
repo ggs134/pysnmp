@@ -83,6 +83,9 @@ targets = (
     #miner14
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget(('goldrush2.hopto.org', 60014)),smiSet ),
+    #miner15
+    ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
+        cmdgen.UdpTransportTarget(('goldrush.iptime.org', 60015)),smiSet ),
 )
 
 # Wait for responses or errors
