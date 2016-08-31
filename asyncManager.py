@@ -5,8 +5,8 @@ import time
 import pymongo
 
 mongoClient = pymongo.MongoClient("52.78.93.195",27017)
-etcCollection = mongoClient["etc"]
-ethCollection = mongoClient["eth"]
+etcCollection = mongoClient["MiningPoolHub"]["etc"]
+ethCollection = mongoClient["MiningPoolHub"]["eth"]
 
 data = ethCollection.find(sort=[("_id",-1)]).limit(1).next()["data"]
 dataC = etcCollection.find(sort=[("_id",-1)]).limit(1).next()["data"]
