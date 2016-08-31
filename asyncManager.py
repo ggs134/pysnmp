@@ -179,6 +179,7 @@ def cbFun(sendRequestHandle, errorIndication, errorStatus, errorIndex, varBinds,
     'ethminerCTXVolSwitches', 'ethminerCTXInvloSwitches','fanspeed']
     if errorIndication:
         print(errorIndication)
+        print('%s via %s' % (authData, transportTarget))
         return 1
     if errorStatus:
         print('%s at %s' % (
