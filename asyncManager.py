@@ -90,9 +90,9 @@ targets = (
     #miner8
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget((mak1addr, 60008)),smiSet ),
-    #miner14
-    ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
-        cmdgen.UdpTransportTarget((mak1addr, 60014)),smiSet ),
+    # #miner14
+    # ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
+    #     cmdgen.UdpTransportTarget((mak1addr, 60014)),smiSet ),
     #miner15
     ( cmdgen.UsmUserData('goldrush', authKey="authkey1", privKey="privkey1", authProtocol=cmdgen.usmHMACMD5AuthProtocol, privProtocol=cmdgen.usmDESPrivProtocol),
         cmdgen.UdpTransportTarget((mak2addr, 60015)),smiSet ),
