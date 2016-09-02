@@ -8,8 +8,8 @@ mongoClient = pymongo.MongoClient("52.78.93.195",27017)
 etcCollection = mongoClient["MiningPoolHub"]["etc"]
 ethCollection = mongoClient["MiningPoolHub"]["eth"]
 
-data = ethCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0][0]
-dataC = etcCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0][0]
+data = ethCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0]
+dataC = etcCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0]
 
 addrList = {10:"192.168.1.4" ,11:"192.168.1.3", 12:"192.168.1.9", 14:"192.168.1.5"}
 
@@ -28,50 +28,50 @@ db = cli['di']
 # mak2addr = "goldrush.iptime.org"
 # mak1addr = "222.98.97.238"
 
-smiSet = ( cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,i,0).addAsn1MibSource('./') for i in range(2,44) )
+# smiSet = ( cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,i,0).addAsn1MibSource('./') for i in range(2,44) )
 
-# smiSet = ( cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,2,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,3,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,4,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,5,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,6,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,7,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,8,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,9,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,10,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,11,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,12,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,13,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,14,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,15,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,16,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,17,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,18,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,19,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,20,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,21,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,22,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,23,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,24,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,25,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,26,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,27,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,28,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,29,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,30,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,31,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,32,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,33,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,34,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,35,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,36,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,37,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,38,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,39,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,40,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,41,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,42,0).addAsn1MibSource('./'),
-#   cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,43,0).addAsn1MibSource('./'),)
+smiSet = ( cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,2,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,3,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,4,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,5,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,6,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,7,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,8,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,9,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,10,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,11,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,12,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,13,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,14,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,15,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,16,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,17,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,18,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,19,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,20,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,21,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,22,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,23,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,24,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,25,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,26,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,27,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,28,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,29,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,30,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,31,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,32,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,33,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,34,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,35,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,36,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,37,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,38,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,39,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,40,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,41,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,42,0).addAsn1MibSource('./'),
+  cmdgen.MibVariable('SNMPv2-SMI', 'enterprises',42,43,0).addAsn1MibSource('./'),)
 
 
 
