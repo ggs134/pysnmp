@@ -8,8 +8,8 @@ mongoClient = pymongo.MongoClient("52.78.93.195",27017)
 etcCollection = mongoClient["MiningPoolHub"]["etc"]
 ethCollection = mongoClient["MiningPoolHub"]["eth"]
 
-data = ethCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0]
-dataC = etcCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0]
+data = ethCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0][0]
+dataC = etcCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0][0]
 
 addrList = {10:"192.168.1.4" ,11:"192.168.1.3", 12:"192.168.1.9", 14:"192.168.1.5"}
 
