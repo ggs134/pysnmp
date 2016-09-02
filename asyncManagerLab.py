@@ -11,7 +11,7 @@ ethCollection = mongoClient["MiningPoolHub"]["eth"]
 data = ethCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0]
 dataC = etcCollection.find(sort=[("_id",-1)]).limit(1).next()["data"][0]
 
-addrList = {10:"192.168.1.4" ,11:"192.168.1.3", 12:"192.168.1.9", 14:"192.168.1.5"}
+addrList = {10:"192.168.1.8" ,11:"192.168.1.3", 12:"192.168.1.7", 14:"192.168.1.5"}
 
 # response = requests.get("http://ethereum.miningpoolhub.com/index.php?page=api&action=getuserworkers&api_key=a8c9f5ea1a4045f6809c9a47c4746f5ae4aa5e136bf96ec0ce4223734c96a128")
 # json_response = response.json()
